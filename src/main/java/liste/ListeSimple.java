@@ -19,6 +19,7 @@ public class ListeSimple {
             if (courant.getElement() == element) {
                 break;
             }
+
             courant = courant.getSuivant();
         }
         if (courant != null)
