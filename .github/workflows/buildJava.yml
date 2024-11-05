@@ -16,6 +16,11 @@ jobs:
           key: maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             maven-
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: sonar
       - name: Setup Java
         uses: "actions/setup-java@v4"
         with:
