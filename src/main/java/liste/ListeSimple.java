@@ -15,8 +15,12 @@ public class ListeSimple {
 
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
-        while (courant != null && courant.getElement() != element)
+        while (courant != null) {
+            if (courant.getElement() == element) {
+                break;
+            }
             courant = courant.getSuivant();
+        }
         if (courant != null)
             courant.setElement(nouvelleValeur);
     }
@@ -52,7 +56,11 @@ public class ListeSimple {
             }
             Noeud precedent = tete;
             Noeud courant = tete.getSuivant();
-            while (courant != null && courant.getElement() != element) {
+            while (courant != null) {
+                if (courant.getElement() == element) {
+                    break;
+                }
+
                 precedent = precedent.getSuivant();
                 courant = courant.getSuivant();
             }
