@@ -1,0 +1,34 @@
+name: Java CI with Maven - Test and package
+on:
+  pull_request:
+    types:
+      - closed
+env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-
+      - name: Setup Java
+        uses: "actions/setup-java@v4"
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+      - name: Maven generate javadoc
+        run: "mvn -B javadoc::javadoc"
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PAT }}
+          publish_dir: ./target/reports/apidocs/

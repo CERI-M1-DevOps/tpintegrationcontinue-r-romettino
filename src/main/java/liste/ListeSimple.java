@@ -4,15 +4,28 @@ public class ListeSimple {
     private long size;
     Noeud tete;
 
+    /** 
+     * Retourne la taille de la liste
+     * @return Taille de la liste
+     */
     public long getSize() {
         return size;
     }
 
+    /** 
+     * Ajouter un élément à la liste
+     * @param element élément à ajouter
+     */
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
     }
 
+    /** 
+     * Modifie la première occurence dans la liste
+     * @param element élément à modifier
+     * @param nouvelleValeur nouvelle valeur
+     */
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
@@ -75,6 +88,12 @@ public class ListeSimple {
        tete = supprimeTousRecurs(element, tete);
     }
 
+    /** 
+     * Supprime toutes les occurences récursivement
+     * @param element éléments à supprimer
+     * @param tete tete de la liste
+     * @return Noeud en tete de la liste
+     */
     public Noeud supprimeTousRecurs(Object element, Noeud tete) {
         if (tete != null) {
             Noeud suiteListe = supprimeTousRecurs(element, tete.getSuivant());
@@ -88,6 +107,10 @@ public class ListeSimple {
         } else return null;
     }
 
+    /** 
+     * Retourne l'avant dernier élément
+     * @return Avant dernier Noeud
+     */
     public Noeud getAvantDernier() {
         if (tete == null || tete.getSuivant() == null)
             return null;
