@@ -10,7 +10,7 @@ jobs:
       - name: Setup Java
         uses: "actions/setup-java@v4"
         with:
-          distribution: 'coretto'
+          distribution: 'corretto'
           java-version: '21'
       - name: Maven build and test
         run: "mvn -B package"
