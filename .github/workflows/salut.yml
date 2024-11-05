@@ -10,4 +10,4 @@ jobs:
           personneASaluer: 'Mon voisin Totoro'
         run: echo "Bonjour ${personneASaluer}"
       - name: L'heure de la Salutations
-        run: echo "L'heure était ${date}"
+        run: echo "L'heure était $(date)"
